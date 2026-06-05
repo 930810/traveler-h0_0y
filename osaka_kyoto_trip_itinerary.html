@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 오사카·교토 여행 일정</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5f6b77;
+      --link: #174a68;
+      --link-hover: #0f3f59;
+      --danger: #9f1d16;
+      --line: #d8dee6;
+      --paper: #fbfcfd;
+      --card: #ffffff;
+      --kyoto: #7b4f30;
+      --osaka: #245b7a;
+      --accent: #b6463a;
+      --soft: #f2f5f7;
+      --note: #fff8e6;
+      --note-ink: #5a4515;
+      --fs-page: 15px;
+      --fs-small: 13px;
+      --fs-table: 14px;
+      --fs-chip: 14px;
+      --fs-card-title: 15px;
+      --fs-section: 20px;
+      --fs-subsection: 17px;
+      --fs-title: 28px;
+      --fw-regular: 400;
+      --fw-medium: 550;
+      --fw-semibold: 650;
+      --fw-bold: 700;
+      --btn-bg: #f4f8fb;
+      --btn-bg-hover: #eef6fb;
+      --btn-line: #9fb7c7;
+      --btn-line-hover: #6f9ab3;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      font-size: var(--fs-page);
+      font-weight: var(--fw-regular);
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 168px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .content {
+      min-width: 0;
+      grid-column: 1;
+    }
+
+    .toc {
+      grid-column: 2;
+      grid-row: 1;
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+    }
+
+    header {
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: var(--fs-title);
+      font-weight: var(--fw-bold);
+      line-height: 1.28;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: var(--fs-section);
+      font-weight: var(--fw-bold);
+      line-height: 1.34;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 28px 0 12px;
+      font-size: var(--fs-subsection);
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p { margin: 8px 0; }
+
+    .ops {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ops-card {
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 98px;
+    }
+
+    .ops-card.small {
+      grid-column: span 3;
+    }
+
+    .ops-card.wide {
+      grid-column: span 3;
+    }
+
+    .ops-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .ops-section + .ops-section {
+      margin-top: 14px;
+      padding-top: 13px;
+      border-top: 1px solid #edf1f5;
+    }
+
+    .ops-section h3 {
+      margin: 0 0 8px;
+      font-size: var(--fs-card-title);
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    .ops-section p {
+      margin: 4px 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: var(--fw-regular);
+      line-height: 1.5;
+    }
+
+    .ops-section ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .ops-section li {
+      margin: 3px 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: var(--fw-regular);
+      line-height: 1.5;
+    }
+
+    .ops-section li::marker {
+      color: var(--ink);
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .check-grid .ops-section + .ops-section {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+      border-left: 1px solid #edf1f5;
+      padding-left: 14px;
+    }
+
+    .critical {
+      color: var(--danger);
+      font-weight: var(--fw-semibold);
+      letter-spacing: 0;
+      text-rendering: geometricPrecision;
+    }
+
+    .subline {
+      display: block;
+      margin-top: 3px;
+      color: var(--ink);
+      font-weight: var(--fw-regular);
+      line-height: 1.45;
+    }
+
+    .day {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 16px 0;
+      overflow: hidden;
+      scroll-margin-top: 18px;
+    }
+
+    .day-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafb;
+    }
+
+    .day.kyoto .day-head { border-left: 6px solid var(--kyoto); }
+    .day.osaka .day-head { border-left: 6px solid var(--osaka); }
+    .day.travel .day-head { border-left: 6px solid var(--accent); }
+
+    .day-body { padding: 20px 22px 22px; }
+
+    .places {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      margin: 10px 0 18px;
+      list-style: none;
+    }
+
+    .places li {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      font-size: var(--fs-chip);
+      white-space: nowrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      background: #fff;
+      font-size: var(--fs-table);
+      line-height: 1.42;
+      letter-spacing: 0;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 9px 10px;
+      vertical-align: middle;
+      text-align: left;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: var(--fw-bold);
+      white-space: nowrap;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    td.time, th.time {
+      width: 126px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th.place, td.place { width: 175px; }
+    th.hours, td.hours { width: 160px; }
+    th.fee, td.fee { width: 128px; }
+    td.must, td.warn { min-width: 160px; }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px solid #ead9a8;
+      border-radius: 8px;
+      background: var(--note);
+      color: var(--note-ink);
+    }
+
+    .map {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 4px 0 18px;
+      background: #eef3f6;
+      overflow: hidden;
+    }
+
+    .map svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .map-open {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 11px;
+      border: 1px solid var(--btn-line-hover);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--link);
+      font-size: 13px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+      text-decoration: none;
+      box-shadow: 0 1px 4px rgba(23, 32, 42, 0.14);
+    }
+
+    .map .route-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .map .pin {
+      fill: #fff;
+      stroke: var(--accent);
+      stroke-width: 3;
+    }
+
+    .map .pin-number {
+      fill: var(--accent);
+      font-size: 12px;
+      font-weight: var(--fw-bold);
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .map .pin-label {
+      fill: var(--ink);
+      font-size: 12px;
+      font-weight: var(--fw-bold);
+      paint-order: stroke;
+      stroke: #fff;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+    }
+
+    .map .map-bg {
+      fill: #eef3f6;
+    }
+
+    .map .map-grid {
+      stroke: #d7e0e6;
+      stroke-width: 1;
+    }
+
+    .map-caption {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: var(--fs-small);
+    }
+
+    .route-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .day-head .route-links {
+      margin: 12px 0 0;
+    }
+
+    .route-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      max-width: 100%;
+      padding: 7px 11px;
+      border: 1px solid var(--btn-line);
+      border-radius: 8px;
+      background: var(--btn-bg);
+      color: var(--link);
+      font-size: var(--fs-chip);
+      font-weight: var(--fw-semibold);
+      line-height: 1.35;
+      text-decoration: none;
+      white-space: normal;
+    }
+
+    .source-map {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      margin-top: 16px;
+      padding: 8px 13px;
+      border: 1px solid var(--btn-line);
+      border-radius: 8px;
+      background: var(--btn-bg);
+      color: var(--link);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+    }
+
+    .jump-box {
+      margin: 0;
+      padding: 14px;
+      border: 1px solid #dfe6ee;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(23, 32, 42, 0.04);
+    }
+
+    .jump-box h2 {
+      margin: 0 0 12px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #edf1f5;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+    }
+
+    .jump-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 0;
+    }
+
+    .jump-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--btn-line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--link);
+      font-size: var(--fs-chip);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .jump-links a:hover {
+      border-color: var(--btn-line-hover);
+      background: var(--btn-bg-hover);
+      color: var(--link-hover);
+    }
+
+    .pin-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pin-list a {
+      display: block;
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--link);
+      text-decoration: none;
+      font-size: var(--fs-chip);
+    }
+
+    .route-links a:hover {
+      background: var(--btn-bg-hover);
+      border-color: var(--btn-line-hover);
+    }
+
+    .appendix {
+      margin-top: 28px;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      scroll-margin-top: 18px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: var(--fs-small);
+    }
+
+    .excluded {
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: #f7eeee;
+      border: 1px solid #e6caca;
+      margin: 14px 0 18px;
+      font-size: var(--fs-small);
+      line-height: 1.45;
+    }
+
+    .excluded p {
+      margin: 0;
+    }
+
+    a { color: var(--link); }
+
+    @media (max-width: 760px) {
+      :root {
+        --fs-title: 24px;
+        --fs-section: 18px;
+        --fs-subsection: 16px;
+        --fs-page: 14px;
+      }
+
+      main { width: min(100% - 20px, 1120px); padding-top: 10px; }
+      .page-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .toc {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 30;
+      }
+      .jump-box {
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .jump-box h2 {
+        margin-bottom: 8px;
+        padding-bottom: 7px;
+        font-size: 15px;
+      }
+      .jump-links {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: thin;
+      }
+      .jump-links a {
+        width: auto;
+        min-width: 52px;
+        flex: 0 0 auto;
+      }
+      .day, .appendix {
+        scroll-margin-top: 96px;
+      }
+      header, .appendix { padding: 18px; }
+      .ops { grid-template-columns: 1fr; }
+      .ops-card,
+      .ops-card.small,
+      .ops-card.wide,
+      .ops-card.full {
+        grid-column: auto;
+      }
+      .check-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .check-grid .ops-section + .ops-section {
+        border-left: 0;
+        border-top: 1px solid #edf1f5;
+        padding-left: 0;
+        padding-top: 12px;
+      }
+      .pin-list { grid-template-columns: 1fr; }
+      .day-body, .day-head { padding-left: 16px; padding-right: 16px; }
+      .places li { white-space: normal; }
+      .map { height: 340px; min-height: 300px; }
+      .route-links {
+        gap: 6px;
+      }
+      .route-links a {
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 13px;
+      }
+
+      table {
+        display: block;
+        border: 0;
+        background: transparent;
+        overflow: visible;
+        font-size: var(--fs-table);
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+      }
+
+      tr {
+        display: block;
+        margin: 0 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      th, td {
+        width: auto !important;
+        min-width: 0 !important;
+      }
+
+      td {
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 9px 10px;
+        text-align: left !important;
+        white-space: normal !important;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: var(--fw-bold);
+        line-height: 1.35;
+      }
+
+      td > * {
+        grid-column: 2;
+        min-width: 0;
+      }
+
+      td .critical,
+      td .subline {
+        display: block;
+        text-align: left;
+      }
+
+      table:has(th.time) td:nth-child(1)::before { content: "시간"; }
+      table:has(th.time) td:nth-child(2)::before { content: "장소"; }
+      table:has(th.time) td:nth-child(3)::before { content: "핵심"; }
+      table:has(th.time) td:nth-child(4)::before { content: "주의"; }
+      table:has(th.time) td:nth-child(5)::before { content: "운영"; }
+      table:has(th.time) td:nth-child(6)::before { content: "요금"; }
+
+      td.time {
+        font-weight: var(--fw-semibold);
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      main { width: 100%; padding: 0; }
+      header, .day, .appendix { break-inside: avoid; border-color: #aaa; }
+      a { color: inherit; text-decoration: none; }
+      .map { height: 340px; min-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="page-grid">
+      <aside class="toc" aria-label="목차">
+        <div class="jump-box">
+          <h2>목차</h2>
+          <div class="jump-links" aria-label="날짜 바로가기 버튼">
+            <a href="#day-0930">9/30</a>
+            <a href="#day-1001">10/1</a>
+            <a href="#day-1002">10/2</a>
+            <a href="#day-1003">10/3</a>
+            <a href="#day-1004">10/4</a>
+            <a href="#day-1005">10/5</a>
+            <a href="#day-1006">10/6</a>
+            <a href="#day-1007">10/7</a>
+            <a href="#map-pins">핀 목록</a>
+            <a href="#hours-fees">영업/입장료</a>
+          </div>
+        </div>
+      </aside>
+      <div class="content">
+    <header>
+      <h1>2026 오사카·교토 여행 일정</h1>
+      <p>4인 여성 여행 기준. 공유 지도에 찍힌 장소를 날짜별 동선에 맞춰 배치하고, 캐리어 보관/회수 흐름을 우선 반영했습니다.</p>
+      <div class="ops">
+        <div class="ops-card small">
+          <div class="ops-section">
+            <h3>여행 기간</h3>
+            <p>2026.09.30 수 ~ 2026.10.07 수</p>
+          </div>
+          <div class="ops-section">
+            <h3>비행 일정</h3>
+            <ul>
+              <li>9/30 김포 13:10 → 간사이 14:55, 2명</li>
+              <li>9/30 김해 13:30 → 간사이 15:00, 2명</li>
+              <li>10/7 간사이 16:05 → 김포 18:00, 2명</li>
+              <li>10/7 간사이 16:00 → 김해 18:00, 2명</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ops-card small">
+          <div class="ops-section">
+            <h3>숙소</h3>
+            <p>9/30~10/3 호텔 엘시엔트 교토 하치조구치<br>10/3~10/7 호텔 더 레벤 오사카</p>
+          </div>
+          <div class="ops-section">
+            <h3>숙소 체크인·짐보관</h3>
+            <ul>
+              <li>호텔 엘시엔트 교토<span class="subline">체크인 15:00 / 체크아웃 11:00</span><span class="subline">체크인 전·체크아웃 당일 짐보관 가능</span></li>
+              <li>호텔 더 레벤 오사카<span class="subline">체크인 15:00 / 체크아웃 11:00</span><span class="subline">1층 수하물룸·셀프 락커, 만실 시 프론트 보관</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ops-card full">
+          <div class="check-grid">
+            <div class="ops-section">
+              <h3>예매/교통</h3>
+              <ul>
+                <li><span class="critical">USJ 1일권 사전 예매.</span></li>
+                <li><span class="critical">USJ 앱/정리권 전날 확인.</span></li>
+                <li><span class="critical">공항 열차 시간 전날 확인.</span></li>
+                <li>뵤도인 내부 관람 현장 접수.</li>
+              </ul>
+            </div>
+            <div class="ops-section">
+              <h3>여행 준비</h3>
+              <ul>
+                <li>여권/항공권/예약자명 확인.</li>
+                <li>eSIM/로밍, 보조배터리.</li>
+                <li>교통카드, 현금, 110V 어댑터.</li>
+                <li>보험, 상비약, 우산/우비.</li>
+              </ul>
+            </div>
+            <div class="ops-section">
+              <h3>현지 주의</h3>
+              <ul>
+                <li>식당 웨이팅/브레이크타임.</li>
+                <li>면세 쇼핑 여권 필수.</li>
+                <li>우천 시 USJ/전망대 조정.</li>
+                <li>짐 많은 날 환승 적은 루트.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="source-map" href="https://www.google.co.kr/maps/@34.8785195,135.6280719,9z/data=!4m6!1m2!10m1!1e1!11m2!2sWJjXdEDRSA3f0jxTIQG9Ow!3e3?entry=ttu&amp;g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">원본 Google Maps 핀 목록 열기</a>
+    </header>
+
+    <section class="day travel" id="day-0930">
+      <div class="day-head">
+        <h2>9/30 수 - 도착, 교토 체크인</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Kansai+International+Airport&amp;destination=Hotel+Elcient+Kyoto+Hachijoguchi&amp;travelmode=transit" target="_blank" rel="noopener">KIX → 호텔</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+Elcient+Kyoto+Hachijoguchi&amp;destination=Kyoto+Station&amp;travelmode=walking" target="_blank" rel="noopener">호텔 → 교토역 근처</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-0930"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">14:55~15:00</td><td class="place">KIX 간사이공항 도착, 4명 합류</td><td class="must">김포 14:55 / 김해 15:00 도착 후 합류</td><td class="warn">입국 지연 대비, 만남 장소 지정</td><td class="hours">공항 상시</td><td class="fee">-</td></tr>
+            <tr><td class="time">16:00~17:30</td><td class="place">KIX → 교토역 이동</td><td class="must">공항 교통 확인, 4명 같이 이동</td><td class="warn"><span class="critical">공항 열차 전날 확인.</span><span class="subline">퇴근 시간 겹치면 좌석 여유 확인</span></td><td class="hours">열차 시간표 확인</td><td class="fee">교통비 별도</td></tr>
+            <tr><td class="time">17:40~18:10</td><td class="place">호텔 엘시엔트 교토 체크인</td><td class="must">15:00 이후 체크인, 짐 정리</td><td class="warn">여권/예약자명 확인</td><td class="hours">IN 15:00 / OUT 11:00</td><td class="fee">-</td></tr>
+            <tr><td class="time">18:30~20:00</td><td class="place">교토역 근처 저녁</td><td class="must">역 주변에서 가볍게 식사</td><td class="warn">첫날은 멀리 이동 금지</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">20:00~</td><td class="place">편의점/가벼운 산책 후 휴식</td><td class="must">물·간식 구매, 충전</td><td class="warn">다음날 위해 일찍 휴식</td><td class="hours">편의점 대부분 24시간</td><td class="fee">무료 / 구매 별도</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="day kyoto" id="day-1001">
+      <div class="day-head">
+        <h2>10/1 목 - 교토 동부</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+Elcient+Kyoto+Hachijoguchi&amp;destination=Ginkaku-ji,+Kyoto&amp;travelmode=transit" target="_blank" rel="noopener">호텔 → 은각사</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ginkaku-ji,+Kyoto&amp;destination=Kiyomizu-dera,+Kyoto&amp;travelmode=transit" target="_blank" rel="noopener">은각사 → 기요미즈데라</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Kiyomizu-dera,+Kyoto&amp;destination=Hanamikoji+Dori,+Kyoto&amp;waypoints=Ninenzaka,+Kyoto&amp;travelmode=walking" target="_blank" rel="noopener">기요미즈 → 니넨자카 → 하나미코지</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hanamikoji+Dori,+Kyoto&amp;destination=Hotel+Elcient+Kyoto+Hachijoguchi&amp;travelmode=transit" target="_blank" rel="noopener">하나미코지 → 호텔</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1001"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">08:30</td><td class="place">호텔 출발</td><td class="must">캐리어는 호텔, 편한 신발</td><td class="warn">버스 혼잡 가능</td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">09:30~10:40</td><td class="place">지쇼지/은각사</td><td class="must">정원 산책, 사진</td><td class="warn">취향 아니면 생략 가능</td><td class="hours">08:30~17:00</td><td class="fee">성인 1,000엔</td></tr>
+            <tr><td class="time">11:00~12:00</td><td class="place">철학의 길/카페</td><td class="must">카페 휴식, 산책</td><td class="warn">점심 전 과보행 주의</td><td class="hours">점포별 상이</td><td class="fee">무료</td></tr>
+            <tr><td class="time">12:00~13:20</td><td class="place">점심</td><td class="must">이동 전 식사</td><td class="warn">웨이팅 길면 대체</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">14:00~15:10</td><td class="place">기요미즈데라</td><td class="must">본당 전망, 포토스팟</td><td class="warn">오르막·계단, 우천 시 주의</td><td class="hours">06:00~18:00 전후</td><td class="fee">성인 500엔</td></tr>
+            <tr><td class="time">15:10~16:30</td><td class="place">니넨자카 산책/디저트</td><td class="must">상점 구경, 디저트</td><td class="warn">17시 전후 폐점 많음</td><td class="hours">거리 상시 / 상점 ~17시</td><td class="fee">무료</td></tr>
+            <tr><td class="time">17:00~18:00</td><td class="place">하나미코지 도리/기온</td><td class="must">골목 산책, 사진</td><td class="warn">촬영 매너 주의</td><td class="hours">거리 상시</td><td class="fee">무료</td></tr>
+            <tr><td class="time">18:00~19:30</td><td class="place">저녁</td><td class="must">기온/가와라마치 후보</td><td class="warn">인기점 웨이팅 가능</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">20:00</td><td class="place">호텔 복귀</td><td class="must">다음날 이동 준비</td><td class="warn">전철/택시도 고려</td><td class="hours">-</td><td class="fee">-</td></tr>
+          </tbody>
+        </table>
+        <div class="note">사찰을 줄이고 싶으면 은각사를 빼고, 기요미즈데라-니넨자카-하나미코지 중심으로 여유 있게 가도 좋습니다.</div>
+      </div>
+    </section>
+
+    <section class="day kyoto" id="day-1002">
+      <div class="day-head">
+        <h2>10/2 금 - 아라시야마, 금각사, 니시키</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+Elcient+Kyoto+Hachijoguchi&amp;destination=Arashiyama+Bamboo+Forest,+Kyoto&amp;travelmode=transit" target="_blank" rel="noopener">호텔 → 아라시야마</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Arashiyama+Bamboo+Forest,+Kyoto&amp;destination=Kinkaku-ji,+Kyoto&amp;travelmode=transit" target="_blank" rel="noopener">아라시야마 → 금각사</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Kinkaku-ji,+Kyoto&amp;destination=Nishiki+Market,+Kyoto&amp;travelmode=transit" target="_blank" rel="noopener">금각사 → 니시키 시장</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Nishiki+Market,+Kyoto&amp;destination=Hotel+Elcient+Kyoto+Hachijoguchi&amp;travelmode=transit" target="_blank" rel="noopener">니시키 시장 → 호텔</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1002"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">08:30</td><td class="place">호텔 출발</td><td class="must">캐리어는 호텔, JR 이동</td><td class="warn">늦으면 혼잡</td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">09:10~10:30</td><td class="place">아라시야마 치쿠린</td><td class="must">대나무숲 산책, 사진</td><td class="warn">짧고 혼잡 가능</td><td class="hours">산책로 상시</td><td class="fee">무료</td></tr>
+            <tr><td class="time">10:30~11:30</td><td class="place">아라시야마 카페/산책</td><td class="must">카페 후보, 강변 산책</td><td class="warn">웨이팅 길면 점심으로</td><td class="hours">점포별 상이</td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">11:30~12:50</td><td class="place">점심</td><td class="must">식사 후 금각사 이동</td><td class="warn">늦지 않게 이동</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">13:30~14:30</td><td class="place">금각사</td><td class="must">연못 앞 사진</td><td class="warn">피곤하면 생략 가능</td><td class="hours">09:00~17:00</td><td class="fee">성인 500엔</td></tr>
+            <tr><td class="time">15:20~16:40</td><td class="place">니시키 시장</td><td class="must">간식, 기념품</td><td class="warn">먹거리 목적이면 일찍</td><td class="hours">대체로 09:00~17:00/18:00</td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">17:00~18:30</td><td class="place">가와라마치/교토 중심가 저녁</td><td class="must">저녁 후보 선택</td><td class="warn">금요일 웨이팅 가능</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">19:30</td><td class="place">호텔 복귀</td><td class="must">체크아웃 짐 정리</td><td class="warn">짐 보관 준비</td><td class="hours">-</td><td class="fee">-</td></tr>
+          </tbody>
+        </table>
+        <div class="note">금각사까지 가면 이동이 꽤 있습니다. 여유형으로 바꾸면 아라시야마를 길게 보고 금각사는 생략 가능합니다.</div>
+      </div>
+    </section>
+
+    <section class="day travel" id="day-1003">
+      <div class="day-head">
+        <h2>10/3 토 - 우지 관광 후 오사카 숙소 이동</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+Elcient+Kyoto+Hachijoguchi&amp;destination=Byodoin,+Uji&amp;travelmode=transit" target="_blank" rel="noopener">교토 호텔 → 뵤도인</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Byodoin,+Uji&amp;destination=Uji+Station,+Kyoto&amp;travelmode=walking" target="_blank" rel="noopener">뵤도인 → 우지 카페/산책</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Uji+Station,+Kyoto&amp;destination=Hotel+Elcient+Kyoto+Hachijoguchi&amp;travelmode=transit" target="_blank" rel="noopener">우지 → 교토 호텔, 짐 회수</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+Elcient+Kyoto+Hachijoguchi&amp;destination=Hotel+The+Leben+Osaka&amp;travelmode=transit" target="_blank" rel="noopener">교토 호텔 → 오사카 호텔</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+The+Leben+Osaka&amp;destination=Glico+Sign,+Dotonbori,+Osaka&amp;travelmode=walking" target="_blank" rel="noopener">오사카 호텔 → 도톤보리/글리코</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1003"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">09:00</td><td class="place">호텔 엘시엔트 체크아웃, 캐리어 보관</td><td class="must">11:00 전 체크아웃, 짐 보관</td><td class="warn">우지에 캐리어 금지</td><td class="hours">OUT 11:00 / 당일 보관</td><td class="fee">-</td></tr>
+            <tr><td class="time">09:30~10:00</td><td class="place">교토역 → 우지역</td><td class="must">JR 나라선 이동</td><td class="warn">열차 방향 확인</td><td class="hours">열차 시간표 확인</td><td class="fee">교통비 별도</td></tr>
+            <tr><td class="time">10:10~11:30</td><td class="place">뵤도인</td><td class="must">외관, 정원, 박물관</td><td class="warn"><span class="critical">내부 관람 즉시 접수.</span><span class="subline">별도 접수·시간제일 수 있음</span></td><td class="hours">08:45~17:30 / 입장 17:15</td><td class="fee">700엔<span class="subline">내부 300엔</span></td></tr>
+            <tr><td class="time">11:30~13:00</td><td class="place">우지 말차 카페/점심</td><td class="must">말차 디저트, 산책</td><td class="warn">웨이팅 길면 대체</td><td class="hours">점포별 상이</td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">13:00~13:40</td><td class="place">우지 → 교토역 복귀</td><td class="must">교토 호텔로 복귀</td><td class="warn">늦으면 체크인 지연</td><td class="hours">열차 시간표 확인</td><td class="fee">-</td></tr>
+            <tr><td class="time">13:40~14:10</td><td class="place">교토 호텔 캐리어 회수</td><td class="must">수하물 확인</td><td class="warn">분실물 확인</td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">14:20~15:30</td><td class="place">교토 → 오사카/신사이바시</td><td class="must">오사카 호텔 직행</td><td class="warn"><span class="critical">환승 적은 루트 확인.</span><span class="subline">환승 많으면 택시 일부 활용 고려</span></td><td class="hours">열차 시간표 확인</td><td class="fee">-</td></tr>
+            <tr><td class="time">15:30~16:10</td><td class="place">호텔 더 레벤 오사카 체크인</td><td class="must">15:00 이후 체크인, 짐 정리</td><td class="warn">이른 도착 시 짐 보관</td><td class="hours">IN 15:00 / OUT 11:00</td><td class="fee">-</td></tr>
+            <tr><td class="time">17:30~19:00</td><td class="place">도톤보리 저녁</td><td class="must">저녁 후보 선택</td><td class="warn">토요일 혼잡, 대체 준비</td><td class="hours">점포별 상이</td><td class="fee">무료</td></tr>
+            <tr><td class="time">19:00~20:30</td><td class="place">글리코사인/난바 야경</td><td class="must">글리코 사진, 산책</td><td class="warn">인파 주의, 무리 금지</td><td class="hours">거리/포토스팟 상시</td><td class="fee">무료</td></tr>
+          </tbody>
+        </table>
+        <div class="note">캐리어 때문에 우지 관광 후 반드시 교토 호텔로 돌아와 짐을 회수하는 흐름이 핵심입니다.</div>
+      </div>
+    </section>
+
+    <section class="day osaka" id="day-1004">
+      <div class="day-head">
+        <h2>10/4 일 - 오사카성, 우메다</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+The+Leben+Osaka&amp;destination=Osaka+Castle&amp;travelmode=transit" target="_blank" rel="noopener">호텔 → 오사카 성</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Osaka+Castle&amp;destination=Umekita+Park,+Osaka&amp;travelmode=transit" target="_blank" rel="noopener">오사카 성 → 우메키타 공원</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Umekita+Park,+Osaka&amp;destination=Hotel+The+Leben+Osaka&amp;travelmode=transit" target="_blank" rel="noopener">우메키타 공원 → 호텔</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1004"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">09:30</td><td class="place">호텔 출발</td><td class="must">캐리어는 호텔, 물 준비</td><td class="warn">공원 내 도보 많음</td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">10:00~11:40</td><td class="place">오사카 성</td><td class="must">천수각, 사진, 산책</td><td class="warn">입장 줄 가능</td><td class="hours">09:00~17:00 / 입장 16:30</td><td class="fee">성인 1,200엔</td></tr>
+            <tr><td class="time">12:00~13:20</td><td class="place">점심</td><td class="must">근처 또는 우메다 식사</td><td class="warn">후보 2개 준비</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">14:00~15:30</td><td class="place">우메키타 공원/그랜드그린 오사카</td><td class="must">산책, 사진, 휴식</td><td class="warn">우천 시 실내 전환</td><td class="hours">공원 상시, 상업시설 점포별 상이</td><td class="fee">무료</td></tr>
+            <tr><td class="time">15:30~17:00</td><td class="place">우메다 카페/쇼핑</td><td class="must">LUCUA/카페 휴식</td><td class="warn">만날 장소 정하기</td><td class="hours">10/11시~21/23시</td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">17:30~19:00</td><td class="place">우메다 저녁</td><td class="must">저녁 후보 선택</td><td class="warn">웨이팅 가능</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">20:00</td><td class="place">호텔 복귀</td><td class="must">USJ 준비, 충전</td><td class="warn"><span class="critical">USJ 티켓·앱·시간 확인.</span><span class="subline">다음날 이른 출발</span></td><td class="hours">-</td><td class="fee">-</td></tr>
+          </tbody>
+        </table>
+        <div class="note">우메다 쪽은 맛집/카페 후보가 많아서 이날 식사 선택지가 좋습니다.</div>
+      </div>
+    </section>
+
+    <section class="day osaka" id="day-1005">
+      <div class="day-head">
+        <h2>10/5 월 - 유니버설 스튜디오 재팬</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+The+Leben+Osaka&amp;destination=Universal+Studios+Japan&amp;travelmode=transit" target="_blank" rel="noopener">호텔 → USJ</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Universal+Studios+Japan&amp;destination=Hotel+The+Leben+Osaka&amp;travelmode=transit" target="_blank" rel="noopener">USJ → 호텔</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1005"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">07:00~07:30</td><td class="place">호텔 출발</td><td class="must">티켓/패스/앱 확인</td><td class="warn"><span class="critical">사전 예매, 앱 등록.</span><span class="subline">캐리어는 호텔</span></td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">08:00 전후</td><td class="place">USJ 도착, 입장 대기</td><td class="must">앱 로그인, 정리권 확인</td><td class="warn"><span class="critical">개장 시간 전날 확인.</span><span class="subline">닌텐도 월드 정리권/대기시간 확인</span></td><td class="hours">2026년 10월 공식 캘린더 확인</td><td class="fee">날짜별 변동</td></tr>
+            <tr><td class="time">09:00~20:00</td><td class="place">유니버설 스튜디오 재팬</td><td class="must">우선순위 정하기</td><td class="warn">긴 대기는 과감히 조정</td><td class="hours">일자별 변동</td><td class="fee">날짜별 변동</td></tr>
+            <tr><td class="time">20:00~21:00</td><td class="place">유니버설시티/파크 안 저녁</td><td class="must">체력 보고 식사</td><td class="warn">폐장 직후 역 혼잡</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">21:30~22:00</td><td class="place">호텔 복귀</td><td class="must">휴식, 다음날 준비</td><td class="warn">피로도 큼</td><td class="hours">-</td><td class="fee">-</td></tr>
+          </tbody>
+        </table>
+        <div class="note">2026년 10월 USJ 운영시간은 여행 직전 공식 캘린더 확인 필요. 개장 전 대기 기준으로 여유 있게 잡았습니다.</div>
+      </div>
+    </section>
+
+    <section class="day osaka" id="day-1006">
+      <div class="day-head">
+        <h2>10/6 화 - 덴노지, 신세카이, 신사이바시 쇼핑</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+The+Leben+Osaka&amp;destination=Abeno+Harukas&amp;travelmode=transit" target="_blank" rel="noopener">호텔 → 아베노하루카스</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Abeno+Harukas&amp;destination=Shinsekai,+Osaka&amp;travelmode=transit" target="_blank" rel="noopener">아베노하루카스 → 신세카이</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Shinsekai,+Osaka&amp;destination=Shinsaibashi+PARCO&amp;travelmode=transit" target="_blank" rel="noopener">신세카이 → 신사이바시 PARCO</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Shinsaibashi+PARCO&amp;destination=Dotonbori,+Osaka&amp;waypoints=Matsumoto+Kiyoshi+Shinsaibashi,+Osaka&amp;travelmode=walking" target="_blank" rel="noopener">PARCO → 마츠키요 → 도톤보리</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Dotonbori,+Osaka&amp;destination=Hotel+The+Leben+Osaka&amp;travelmode=walking" target="_blank" rel="noopener">도톤보리 → 호텔</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1006"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">10:00</td><td class="place">호텔 출발</td><td class="must">캐리어는 호텔</td><td class="warn">늦게 시작</td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">10:30~12:00</td><td class="place">아베노하루카스</td><td class="must">전망대, 사진</td><td class="warn">흐리면 당일 판단</td><td class="hours">09:00~22:00<span class="subline">최종입장 30분 전</span></td><td class="fee">성인 2,200엔</td></tr>
+            <tr><td class="time">12:10~13:30</td><td class="place">신세카이 점심</td><td class="must">쿠시카츠 후보</td><td class="warn">메뉴·가격 확인</td><td class="hours">점포별 상이</td><td class="fee">식비 별도</td></tr>
+            <tr><td class="time">13:30~14:30</td><td class="place">신세카이 산책</td><td class="must">거리 사진</td><td class="warn">짧게 산책</td><td class="hours">거리 상시</td><td class="fee">무료</td></tr>
+            <tr><td class="time">15:00~16:30</td><td class="place">신사이바시 PARCO</td><td class="must">쇼핑, 매장 체크</td><td class="warn">시간 초과 주의</td><td class="hours">물판 10~20<span class="subline">식당 11~22/23</span></td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">16:30~17:30</td><td class="place">마츠모토키요시/쇼핑</td><td class="must">드럭스토어, 여권 준비</td><td class="warn">면세 포장 주의</td><td class="hours">10:00~23:00 전후</td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">18:00~19:30</td><td class="place">도톤보리 마지막 저녁</td><td class="must">마지막 저녁, 야경</td><td class="warn">쇼핑 짐은 호텔에</td><td class="hours">거리 상시, 식당별 상이</td><td class="fee">무료</td></tr>
+            <tr><td class="time">20:00~</td><td class="place">호텔 복귀/짐 정리</td><td class="must">짐 무게, 여권 확인</td><td class="warn">공항 전 짐 정리</td><td class="hours">-</td><td class="fee">-</td></tr>
+          </tbody>
+        </table>
+        <div class="note">쇼핑이 늘어날 가능성이 큰 날이라 오전 시작을 늦추고 저녁 전 호텔 복귀 여지를 남겼습니다.</div>
+      </div>
+    </section>
+
+    <section class="day travel" id="day-1007">
+      <div class="day-head">
+        <h2>10/7 수 - 체크아웃, 출국</h2>
+        <ul class="route-links">
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+The+Leben+Osaka&amp;destination=Dotonbori,+Osaka&amp;travelmode=walking" target="_blank" rel="noopener">호텔 → 난바/도톤보리 점심</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Dotonbori,+Osaka&amp;destination=Hotel+The+Leben+Osaka&amp;travelmode=walking" target="_blank" rel="noopener">도톤보리 → 호텔, 짐 회수</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+The+Leben+Osaka&amp;destination=Kansai+International+Airport&amp;travelmode=transit" target="_blank" rel="noopener">호텔 → KIX</a></li>
+        </ul>
+      </div>
+      <div class="day-body">
+        <p class="map-caption">Google Maps 지도. 실제 경로는 위 버튼에서 새 창으로 확인.</p>
+        <div class="map" id="map-1007"></div>
+        <table>
+          <thead><tr><th class="time">시간</th><th class="place">장소</th><th>핵심</th><th>주의</th><th class="hours">운영</th><th class="fee">요금</th></tr></thead>
+          <tbody>
+            <tr><td class="time">10:30~11:00</td><td class="place">호텔 더 레벤 체크아웃, 캐리어 보관</td><td class="must">11:00 전 체크아웃, 짐 보관</td><td class="warn">난바에 캐리어 금지</td><td class="hours">OUT 11:00 / 보관 가능</td><td class="fee">-</td></tr>
+            <tr><td class="time">11:00~12:30</td><td class="place">신사이바시/난바 점심·카페</td><td class="must">근처에서 짧게 식사</td><td class="warn">웨이팅 길면 포기</td><td class="hours">점포별 상이</td><td class="fee">무료 / 구매 별도</td></tr>
+            <tr><td class="time">12:30~13:00</td><td class="place">호텔 복귀, 캐리어 회수</td><td class="must">짐/여권/항공권 확인</td><td class="warn">출발 전 최종 점검</td><td class="hours">-</td><td class="fee">-</td></tr>
+            <tr><td class="time">13:00~14:15</td><td class="place">난바 → KIX 이동</td><td class="must">라피트/공항급행</td><td class="warn"><span class="critical">공항행 열차 전날 확인.</span><span class="subline">항공편 16:00/16:05라 지연 여유 필요</span></td><td class="hours">열차 시간표 확인</td><td class="fee">교통비 별도</td></tr>
+            <tr><td class="time">14:15~14:30</td><td class="place">공항 도착 목표</td><td class="must">체크인, 수하물</td><td class="warn">항공편별 카운터 확인</td><td class="hours">항공사 카운터 기준</td><td class="fee">-</td></tr>
+            <tr><td class="time">16:00/16:05</td><td class="place">출국</td><td class="must">김해 16:00 / 김포 16:05</td><td class="warn">탑승 지연 주의</td><td class="hours">16:00 김해 / 16:05 김포</td><td class="fee">-</td></tr>
+          </tbody>
+        </table>
+        <div class="note">캐리어 때문에 멀리 가지 않고, 호텔 근처에서 점심/카페만 짧게 하는 게 안전합니다.</div>
+      </div>
+    </section>
+
+    <section class="excluded" aria-label="제외 추천 일정">
+      <p><strong>제외 추천 일정: 하치만 보리</strong> - 오미하치만 권역이라 교토/오사카 핵심 동선에서 멀고 왕복 시간이 큽니다.</p>
+    </section>
+
+    <section class="appendix" id="map-pins">
+      <h2>원본 구글맵 핀 목록</h2>
+      <p class="small">공유받은 “26년 오사카여행” 지도에 찍힌 장소입니다. 각 항목을 누르면 Google Maps에서 해당 장소를 검색합니다.</p>
+      <ul class="pin-list">
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%A7%80%EC%87%BC%EC%A7%80%20%EC%9D%80%EA%B0%81%EC%82%AC%20Kyoto" target="_blank" rel="noopener">지쇼지/은각사</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B8%B0%EC%9A%94%EB%AF%B8%EC%A6%88%EB%8D%B0%EB%9D%BC%20Kyoto" target="_blank" rel="noopener">기요미즈데라</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%8B%88%EB%84%A8%EC%9E%90%EC%B9%B4%20Kyoto" target="_blank" rel="noopener">니넨자카</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%98%EB%82%98%EB%AF%B8%EC%BD%94%EC%A7%80%20%EB%8F%84%EB%A6%AC%20Kyoto" target="_blank" rel="noopener">하나미코지 도리</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%95%84%EB%9D%BC%EC%8B%9C%EC%95%BC%EB%A7%88%20%EC%B9%98%EC%BF%A0%EB%A6%B0%20Kyoto" target="_blank" rel="noopener">아라시야마 치쿠린</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B8%88%EA%B0%81%EC%82%AC%20Kyoto" target="_blank" rel="noopener">금각사</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%8B%88%EC%8B%9C%ED%82%A4%20%EC%8B%9C%EC%9E%A5%20Kyoto" target="_blank" rel="noopener">니시키 시장</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%B5%A4%EB%8F%84%EC%9D%B8%20Uji" target="_blank" rel="noopener">뵤도인</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%98%EC%B9%98%EB%A7%8C%20%EB%B3%B4%EB%A6%AC%20Omihachiman" target="_blank" rel="noopener">하치만 보리</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%8F%84%ED%86%A4%EB%B3%B4%EB%A6%AC%20Osaka" target="_blank" rel="noopener">도톤보리</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B8%80%EB%A6%AC%EC%BD%94%EC%82%AC%EC%9D%B8%20Dotonbori%20Osaka" target="_blank" rel="noopener">글리코사인</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%98%A4%EC%82%AC%EC%B9%B4%20%EC%84%B1" target="_blank" rel="noopener">오사카 성</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9A%B0%EB%A9%94%ED%82%A4%ED%83%80%20%EA%B3%B5%EC%9B%90%20Osaka" target="_blank" rel="noopener">우메키타 공원</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9C%A0%EB%8B%88%EB%B2%84%EC%84%A4%20%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4%20%EC%9E%AC%ED%8C%AC" target="_blank" rel="noopener">유니버설 스튜디오 재팬</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%95%84%EB%B2%A0%EB%85%B8%ED%95%98%EB%A3%A8%EC%B9%B4%EC%8A%A4" target="_blank" rel="noopener">아베노하루카스</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%8B%A0%EC%84%B8%EC%B9%B4%EC%9D%B4%20Osaka" target="_blank" rel="noopener">신세카이</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%8B%A0%EC%82%AC%EC%9D%B4%EB%B0%94%EC%8B%9C%20PARCO" target="_blank" rel="noopener">신사이바시 PARCO</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%A7%88%EC%B8%A0%EB%AA%A8%ED%86%A0%ED%82%A4%EC%9A%94%EC%8B%9C%20%EC%8B%A0%EC%82%AC%EC%9D%B4%EB%B0%94%EC%8B%9C%EC%A0%90" target="_blank" rel="noopener">마츠모토키요시 신사이바시점</a></li>
+      </ul>
+    </section>
+
+    <section class="appendix" id="hours-fees">
+      <h2>영업시간 참고</h2>
+      <p class="small">확인 기준: 2026-06-05 현재 공식/공개 정보. 2026년 9월 말 출발 전, 식당·USJ·시장류는 다시 확인 추천.</p>
+
+      <h3>관광지/쇼핑</h3>
+      <table>
+        <thead>
+          <tr><th>장소</th><th>날짜</th><th>시간</th><th>요금</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>지쇼지/은각사</td><td>10/1</td><td>3~11월 08:30~17:00</td><td>성인 1,000엔</td><td>2026년 4월 1일부터 인상<span class="subline">연중무휴, 특별전 등 변동 가능</span></td></tr>
+          <tr><td>기요미즈데라</td><td>10/1</td><td>06:00~18:00 전후</td><td>성인 500엔</td><td>계절별 변동</td></tr>
+          <tr><td>니넨자카</td><td>10/1</td><td>거리 자체 상시</td><td>무료</td><td>상점은 대체로 낮~17:00 전후</td></tr>
+          <tr><td>하나미코지 도리</td><td>10/1</td><td>거리 자체 상시</td><td>무료</td><td>저녁 산책 가능</td></tr>
+          <tr><td>아라시야마 치쿠린</td><td>10/2</td><td>산책로 상시</td><td>무료</td><td>어두운 시간보다 오전 추천</td></tr>
+          <tr><td>금각사</td><td>10/2</td><td>09:00~17:00</td><td>성인 500엔</td><td>연중무휴</td></tr>
+          <tr><td>니시키 시장</td><td>10/2</td><td>대체로 09:00~17:00/18:00</td><td>입장 무료</td><td>점포별 상이, 수·일 일부 휴무 가능</td></tr>
+          <tr><td>뵤도인</td><td>10/3</td><td>08:45~17:30 / 입장 17:15</td><td>700엔<span class="subline">내부 300엔</span></td><td>박물관 09:00~17:00</td></tr>
+          <tr><td>도톤보리/글리코사인</td><td>10/3, 10/6</td><td>거리/외부 포토스팟 상시</td><td>무료</td><td>야간 추천</td></tr>
+          <tr><td>오사카 성 천수각</td><td>10/4</td><td>09:00~17:00, 최종입장 16:30</td><td>성인 1,200엔</td><td>공원은 무료·상시</td></tr>
+          <tr><td>우메키타 공원</td><td>10/4</td><td>공원 상시</td><td>무료</td><td>주변 상업시설은 10/11시~21/23시</td></tr>
+          <tr><td>유니버설 스튜디오 재팬</td><td>10/5</td><td>2026년 10월 운영시간 추후 확인</td><td>날짜별 변동</td><td>공식 캘린더/티켓 가격 재확인 필수</td></tr>
+          <tr><td>아베노하루카스 전망대</td><td>10/6</td><td>09:00~22:00<span class="subline">최종입장 30분 전</span></td><td>성인 2,200엔</td><td>2026년 7월 23일 이후 요금 기준</td></tr>
+          <tr><td>신세카이</td><td>10/6</td><td>거리 자체 상시</td><td>무료</td><td>식당/츠텐카쿠 등은 시설별 상이</td></tr>
+          <tr><td>신사이바시 PARCO</td><td>10/6</td><td>물판·서비스 10:00~20:00<span class="subline">13F 식당 11:00~22:00, B2F 식당 11:00~23:00</span></td><td>입장 무료</td><td>매장별 상이</td></tr>
+          <tr><td>마츠모토키요시 신사이바시점</td><td>10/6</td><td>10:00~23:00 전후</td><td>입장 무료</td><td>매장별/시기별 재확인</td></tr>
+        </tbody>
+      </table>
+
+      <h3>식당/카페 후보</h3>
+      <table>
+        <thead>
+          <tr><th>날짜</th><th>장소</th><th>영업시간</th><th>메모</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10/1</td><td>MACCHA HOUSE Kiyomizu Sannei-zaka</td><td>10:30~18:00, L.O. 17:30</td><td>기요미즈데라/니넨자카 전후</td></tr>
+          <tr><td>10/1~10/2</td><td>Teppanyaki &amp; Okonomiyaki Zetto</td><td>확인 필요</td><td>가와라마치/니시키 저녁 후보</td></tr>
+          <tr><td>10/2</td><td>% Arabica Kyoto Arashiyama</td><td>확인 필요</td><td>아라시야마 카페 후보, 웨이팅 가능</td></tr>
+          <tr><td>10/3</td><td>돈카츠 가츠쿠라 교토포르타점</td><td>11:00~22:00, L.O. 21:30</td><td>교토역, 캐리어 회수 전후 식사에 좋음</td></tr>
+          <tr><td>10/3</td><td>쿠시카츠 다루마 교토포르타점</td><td>11:00~22:30, L.O. 30분 전</td><td>교토역, 1인 1음료 주문 안내 있음</td></tr>
+          <tr><td>10/3, 10/6</td><td>오코노미야끼 사카바O 난바점</td><td>확인 필요</td><td>도톤보리/글리코사인 근처</td></tr>
+          <tr><td>10/3, 10/6</td><td>이치란 도톤보리점 별관</td><td>확인 필요</td><td>도톤보리 야식 후보, 운영/휴점 변동 확인</td></tr>
+          <tr><td>10/4</td><td>Human Beings Everybody Noodles Premium, LUCUA Osaka</td><td>11:00~23:00</td><td>우메다/LUCUA 점심·저녁 후보</td></tr>
+          <tr><td>10/4</td><td>월島もんじゃ もへじ LUCUA Osaka</td><td>11:00~23:00</td><td>우메다 저녁 후보</td></tr>
+          <tr><td>10/4</td><td>Cafe Taiyo No Tou - Bekkan shop</td><td>2026-05-18 이후 일시 영업 종료 예정</td><td>10월 여행에서는 제외/대체 필요</td></tr>
+          <tr><td>10/6, 10/7</td><td>우동 큐타로</td><td>확인 필요</td><td>호텔 더 레벤/혼마치·신사이바시 쪽 점심 후보</td></tr>
+          <tr><td>10/6, 10/7</td><td>코메다커피 니시신사이바시점</td><td>확인 필요</td><td>쇼핑 중 휴식/출국일 카페 후보</td></tr>
+          <tr><td>10/6, 10/7</td><td>무겐라멘 신사이바시점</td><td>확인 필요</td><td>신사이바시 쇼핑 전후 라멘 후보</td></tr>
+          <tr><td>10/6, 10/7</td><td>CoCo이치방야 Minamisenba</td><td>확인 필요</td><td>빠른 식사 대체안</td></tr>
+        </tbody>
+      </table>
+      <p class="small">식당은 브레이크타임, 정기휴무, 재료 소진, 예약/웨이팅 변수가 커서 “1순위 + 근처 대체 1곳” 방식으로 쓰는 게 안전합니다.</p>
+      <h3>입장료/교통 예매 링크</h3>
+      <ul>
+        <li><a href="https://www.shokoku-ji.jp/ginkakuji/news/" target="_blank" rel="noopener">은각사 공식 공지</a>: 2026년 4월 1일부터 성인 1,000엔</li>
+        <li><a href="https://www.shokoku-ji.jp/en/kinkakuji/access/" target="_blank" rel="noopener">금각사 공식 안내</a>: 성인 500엔</li>
+        <li><a href="https://www.keihan.co.jp/visiting/spot/detail/055.html" target="_blank" rel="noopener">기요미즈데라 요금 참고</a>: 성인 500엔</li>
+        <li><a href="https://www.byodoin.or.jp/guide/" target="_blank" rel="noopener">뵤도인 공식 안내</a>: 성인 700엔, 봉황당 내부 300엔 별도</li>
+        <li><a href="https://www.osakacastle.net/pdf/leaflet/english_2025.pdf" target="_blank" rel="noopener">오사카성 공식 리플릿</a>: 성인 1,200엔</li>
+        <li><a href="https://www.abenoharukas-300.jp/observatory/price-change/" target="_blank" rel="noopener">아베노하루카스 공식 요금 변경 안내</a>: 2026년 7월 23일 이후 성인 2,200엔</li>
+        <li><a href="https://www.usjticketing.com/" target="_blank" rel="noopener">USJ 공식 티켓 스토어</a>: 방문일별 가격 확인</li>
+        <li><a href="https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/" target="_blank" rel="noopener">JR-WEST HARUKA 편도 티켓</a>: KIX↔교토 이동 후보, 좌석/요금 확인</li>
+        <li><a href="https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/?LANG=en" target="_blank" rel="noopener">JR-WEST 온라인 예약/검색</a>: HARUKA 및 JR 열차 시간·예약 확인</li>
+        <li><a href="https://www.nankai.co.jp/en_railway/ticket/rapit" target="_blank" rel="noopener">난카이 라피트 디지털 티켓</a>: 난바↔간사이공항 지정석 특급권 확인</li>
+        <li><a href="https://www.kansai-airport.or.jp/en/access/train" target="_blank" rel="noopener">간사이공항 공식 철도 안내</a>: JR·난카이 시간표/공항 접근 확인</li>
+      </ul>
+      <h3>숙소 운영 정보 확인 링크</h3>
+      <ul>
+        <li><a href="https://www.elcient.com/kyoto/en/faq/" target="_blank" rel="noopener">호텔 엘시엔트 교토 FAQ</a>: 체크인 15:00, 체크아웃 11:00, 체크인 전/체크아웃 당일 짐보관 가능</li>
+        <li><a href="https://leben-hotels.jp/en/faq/" target="_blank" rel="noopener">호텔 더 레벤 오사카 FAQ</a>: 체크인 15:00, 체크아웃 11:00</li>
+        <li><a href="https://leben-hotels.jp/en/news-en/3238" target="_blank" rel="noopener">호텔 더 레벤 오사카 수하물 보관 안내</a>: 1층 수하물룸/셀프 락커, 대형 짐 또는 만실 시 프론트 보관</li>
+      </ul>
+    </section>
+      </div>
+    </div>
+  </main>
+  <script>
+    const dayRoutes = {
+      "map-0930": [
+        ["간사이국제공항 KIX", 34.434722, 135.244167],
+        ["호텔 엘시엔트 교토 하치조구치", 34.984920, 135.760360],
+        ["교토역", 34.985849, 135.758766]
+      ],
+      "map-1001": [
+        ["호텔 엘시엔트 교토", 34.984920, 135.760360],
+        ["지쇼지/은각사", 35.027021, 135.798205],
+        ["철학의 길 주변", 35.020200, 135.793000],
+        ["기요미즈데라", 34.994856, 135.785046],
+        ["니넨자카", 34.998000, 135.780850],
+        ["하나미코지 도리/기온", 35.003760, 135.775250],
+        ["호텔 엘시엔트 교토", 34.984920, 135.760360]
+      ],
+      "map-1002": [
+        ["호텔 엘시엔트 교토", 34.984920, 135.760360],
+        ["JR 사가아라시야마역", 35.018650, 135.681000],
+        ["아라시야마 치쿠린", 35.017230, 135.671650],
+        ["아라시야마 점심/카페", 35.013850, 135.677500],
+        ["금각사", 35.039370, 135.729243],
+        ["니시키 시장", 35.005020, 135.764870],
+        ["호텔 엘시엔트 교토", 34.984920, 135.760360]
+      ],
+      "map-1003": [
+        ["호텔 엘시엔트 교토 - 짐 보관", 34.984920, 135.760360],
+        ["JR 우지역", 34.890260, 135.800520],
+        ["뵤도인", 34.889300, 135.807680],
+        ["우지 말차 카페/점심", 34.891100, 135.806000],
+        ["호텔 엘시엔트 교토 - 짐 회수", 34.984920, 135.760360],
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400],
+        ["도톤보리", 34.668720, 135.501090],
+        ["글리코사인", 34.668660, 135.501280],
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400]
+      ],
+      "map-1004": [
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400],
+        ["오사카 성", 34.687315, 135.525854],
+        ["점심", 34.690400, 135.520900],
+        ["우메키타 공원", 34.704950, 135.493850],
+        ["우메다 카페/쇼핑", 34.702485, 135.498302],
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400]
+      ],
+      "map-1005": [
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400],
+        ["유니버설시티역", 34.667510, 135.438740],
+        ["유니버설 스튜디오 재팬", 34.665442, 135.432338],
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400]
+      ],
+      "map-1006": [
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400],
+        ["아베노하루카스", 34.646120, 135.513350],
+        ["신세카이", 34.652500, 135.506310],
+        ["신세카이 점심/카페", 34.653000, 135.506900],
+        ["신사이바시 PARCO", 34.673790, 135.500640],
+        ["마츠모토키요시 신사이바시점", 34.671250, 135.501300],
+        ["도톤보리", 34.668720, 135.501090],
+        ["호텔 더 레벤 오사카", 34.676800, 135.506400]
+      ],
+      "map-1007": [
+        ["호텔 더 레벤 오사카 - 짐 보관", 34.676800, 135.506400],
+        ["신사이바시/난바 점심", 34.668720, 135.501090],
+        ["호텔 더 레벤 오사카 - 짐 회수", 34.676800, 135.506400],
+        ["난바역", 34.665650, 135.500280],
+        ["간사이국제공항 KIX", 34.434722, 135.244167]
+      ]
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    const mapEmbeds = {
+      "map-0930": "https://www.google.com/maps?output=embed&saddr=Kansai+International+Airport&daddr=Hotel+Elcient+Kyoto+Hachijoguchi+to:Kyoto+Station",
+      "map-1001": "https://www.google.com/maps?output=embed&saddr=Hotel+Elcient+Kyoto+Hachijoguchi&daddr=Ginkaku-ji,+Kyoto+to:Kiyomizu-dera,+Kyoto+to:Ninenzaka,+Kyoto+to:Hanamikoji+Dori,+Kyoto+to:Hotel+Elcient+Kyoto+Hachijoguchi",
+      "map-1002": "https://www.google.com/maps?output=embed&saddr=Hotel+Elcient+Kyoto+Hachijoguchi&daddr=Arashiyama+Bamboo+Forest,+Kyoto+to:Kinkaku-ji,+Kyoto+to:Nishiki+Market,+Kyoto+to:Hotel+Elcient+Kyoto+Hachijoguchi",
+      "map-1003": "https://www.google.com/maps?output=embed&saddr=Hotel+Elcient+Kyoto+Hachijoguchi&daddr=Byodoin,+Uji+to:Uji+Station,+Kyoto+to:Hotel+Elcient+Kyoto+Hachijoguchi+to:Hotel+The+Leben+Osaka+to:Glico+Sign,+Dotonbori,+Osaka",
+      "map-1004": "https://www.google.com/maps?output=embed&saddr=Hotel+The+Leben+Osaka&daddr=Osaka+Castle+to:Umekita+Park,+Osaka+to:Hotel+The+Leben+Osaka",
+      "map-1005": "https://www.google.com/maps?output=embed&saddr=Hotel+The+Leben+Osaka&daddr=Universal+Studios+Japan+to:Hotel+The+Leben+Osaka",
+      "map-1006": "https://www.google.com/maps?f=d&source=s_d&hl=ko&output=embed&saddr=Hotel+The+Leben+Osaka&daddr=Abeno+Harukas+to:Shinsekai,+Osaka+to:Shinsaibashi+PARCO+to:Dotonbori,+Osaka+to:Hotel+The+Leben+Osaka",
+      "map-1007": "https://www.google.com/maps?output=embed&saddr=Hotel+The+Leben+Osaka&daddr=Dotonbori,+Osaka+to:Hotel+The+Leben+Osaka+to:Namba+Station,+Osaka+to:Kansai+International+Airport"
+    };
+
+    function buildMap(id, route) {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const src = mapEmbeds[id];
+      el.innerHTML = `
+        <iframe
+          title="Google Maps 날짜별 이동 지도"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="${escapeHtml(src)}">
+        </iframe>
+        <a class="map-open" href="${escapeHtml(src.replace("output=embed", ""))}" target="_blank" rel="noopener">Google Maps 열기</a>
+      `;
+    }
+
+    window.addEventListener("load", () => {
+      document.querySelectorAll("table").forEach((table) => {
+        const headers = [...table.querySelectorAll("thead th")].map((th) => th.textContent.trim());
+        table.querySelectorAll("tbody tr").forEach((row) => {
+          [...row.children].forEach((cell, index) => {
+            if (headers[index]) cell.setAttribute("data-label", headers[index]);
+          });
+        });
+      });
+
+      Object.entries(dayRoutes).forEach(([id, route]) => buildMap(id, route));
+    });
+  </script>
+</body>
+</html>
+
+
+
+
