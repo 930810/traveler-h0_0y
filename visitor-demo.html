@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제주여행 방문 등록 체험</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f0f5ed;color:#20362c;font:1rem/1.55 system-ui,sans-serif}main{max-width:34rem;margin:auto;padding:3rem 1rem}h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.5rem 0}section{background:white;border:1px solid #d8e5da;border-radius:1rem;padding:1.4rem;margin-top:1.2rem}h2{font-size:1.2rem;margin:0 0 .7rem}label{display:block;font-weight:600}input,button{font:inherit;border-radius:.55rem;padding:.65rem .8rem}input{width:100%;margin:.35rem 0 .65rem;border:1px solid #82968a;color:inherit}button{border:0;background:#285a42;color:white;cursor:pointer}p{margin:.5rem 0}#message{color:#a02020}a{color:#285a42}
+</style>
+</head>
+<body>
+<main>
+<a href="./jeju_trip_itinerary.html">← 제주여행</a>
+<h1>방문 등록 체험</h1>
+<p>테스트용 이름을 사용해 주세요. 방문 횟수는 이 브라우저에만 저장됩니다. 개인 코드로 다른 기기에 같은 이름을 연결할 수 있으며, 기기 간 횟수 합산은 이 체험에 포함되지 않습니다.</p>
+<div id="registration">
+<section>
+<h2>처음 방문했어요</h2>
+<form id="register">
+<label for="name">이름 또는 별명</label>
+<input id="name" required maxlength="30" placeholder="예: 제주여행자">
+<button>개인 코드 만들기</button>
+</form>
+</section>
+<section>
+<h2>다른 기기에서 발급받았어요</h2>
+<form id="connect">
+<label for="code">개인 코드</label>
+<input id="code" required maxlength="180" spellcheck="false" autocomplete="off" autocapitalize="off">
+<button>기존 코드로 연결</button>
+</form>
+</section>
+</div>
+<section id="account" hidden>
+<h2 id="greeting"></h2>
+<p id="count"></p>
+<label for="personal">내 개인 코드 (이름 포함)</label>
+<input id="personal" readonly>
+<button id="copy" type="button">코드 복사</button>
+<button id="switch" type="button">다른 이름으로 체험</button>
+<p id="copy-status" role="status"></p>
+</section>
+<p id="message" role="alert"></p>
+</main>
+<script>
+const get = (id) => document.getElementById(id);
+const profileKey = 'jeju-visitor-demo-profile';
+let storage;
+try {
+  storage = window.localStorage;
+  storage.setItem(profileKey + '-check', '1');
+  storage.removeItem(profileKey + '-check');
+} catch {
+  storage = null;
+  get('message').textContent = '이 브라우저에서 저장을 사용할 수 없어요. 일반 브라우저에서 다시 열어 주세요.';
+}
+function encode(name) {
+  return 'JJ-' + crypto.randomUUID() + '.' + btoa(String.fromCharCode(...new TextEncoder().encode(name)));
+}
+function nameFrom(code) {
+  const match = /^JJ-[0-9a-f-]{36}\.([A-Za-z0-9+/]+={0,2})$/.exec(code);
+  if (!match || code.length > 180) throw new Error('invalid code');
+  const name = new TextDecoder('utf-8', { fatal: true }).decode(Uint8Array.from(atob(match[1]), (char) => char.charCodeAt(0))).trim();
+  if (!name || name.length > 30) throw new Error('invalid name');
+  return name;
+}
+function visit(code) {
+  if (!storage) return;
+  const name = nameFrom(code);
+  const countKey = 'jeju-visitor-demo-count-' + code;
+  const count = Number(storage.getItem(countKey) || 0) + 1;
+  storage.setItem(countKey, String(count));
+  storage.setItem(profileKey, code);
+  get('message').textContent = '';
+  get('registration').hidden = true;
+  get('account').hidden = false;
+  get('greeting').textContent = name + '님, 반가워요!';
+  get('count').textContent = '이 브라우저에서 ' + count + '회 방문했어요.';
+  get('personal').value = code;
+}
+get('register').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const name = get('name').value.trim();
+  if (name) visit(encode(name));
+});
+get('connect').addEventListener('submit', (event) => {
+  event.preventDefault();
+  try {
+    visit(get('code').value.trim());
+  } catch {
+    get('message').textContent = '개인 코드를 처음부터 끝까지 복사했는지 확인해 주세요.';
+  }
+});
+get('copy').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(get('personal').value);
+    get('copy-status').textContent = '코드를 복사했어요.';
+  } catch {
+    get('personal').select();
+    get('copy-status').textContent = '선택한 코드를 직접 복사해 주세요.';
+  }
+});
+get('switch').addEventListener('click', () => {
+  storage.removeItem(profileKey);
+  location.reload();
+});
+const saved = storage?.getItem(profileKey);
+if (saved) visit(saved);
+</script>
+</body>
+</html>
