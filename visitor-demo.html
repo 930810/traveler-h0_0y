@@ -6,13 +6,14 @@
 <title>제주여행 방문 등록 체험</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f0f5ed;color:#20362c;font:1rem/1.55 system-ui,sans-serif}main{max-width:34rem;margin:auto;padding:3rem 1rem}h1{font-size:clamp(1.8rem,7vw,2.6rem);margin:.5rem 0}section{background:white;border:1px solid #d8e5da;border-radius:1rem;padding:1.4rem;margin-top:1.2rem}h2{font-size:1.2rem;margin:0 0 .7rem}label{display:block;font-weight:600}input,button{font:inherit;border-radius:.55rem;padding:.65rem .8rem}input{width:100%;margin:.35rem 0 .65rem;border:1px solid #82968a;color:inherit}button{border:0;background:#285a42;color:white;cursor:pointer}p{margin:.5rem 0}#message{color:#a02020}a{color:#285a42}
+#poll input { width: auto; margin-right: .45rem; }
 </style>
 </head>
 <body>
 <main>
 <a href="./jeju_trip_itinerary.html">← 제주여행</a>
 <h1>방문 등록 체험</h1>
-<p>테스트용 이름을 사용해 주세요. 방문 횟수는 이 브라우저에만 저장됩니다. 개인 코드로 다른 기기에 같은 이름을 연결할 수 있으며, 기기 간 횟수 합산은 이 체험에 포함되지 않습니다.</p>
+<p>테스트용 이름을 사용해 주세요. 방문 횟수는 이 브라우저에만 저장됩니다. 개인 코드로 다른 기기에 같은 이름을 연결할 수 있으며, 투표 결과도 이 브라우저에만 저장됩니다.</p>
 <div id="registration">
 <section>
 <h2>처음 방문했어요</h2>
@@ -26,7 +27,7 @@
 <h2>다른 기기에서 발급받았어요</h2>
 <form id="connect">
 <label for="code">개인 코드</label>
-<input id="code" required maxlength="180" spellcheck="false" autocomplete="off" autocapitalize="off">
+<input id="code" required maxlength="220" spellcheck="false" autocomplete="off" autocapitalize="off">
 <button>기존 코드로 연결</button>
 </form>
 </section>
@@ -39,6 +40,14 @@
 <button id="copy" type="button">코드 복사</button>
 <button id="switch" type="button">다른 이름으로 체험</button>
 <p id="copy-status" role="status"></p>
+<h2>언제 만날까요?</h2>
+<form id="poll">
+<label><input type="radio" name="vote" value="dec" required> 12월</label>
+<label><input type="radio" name="vote" value="jan"> 1월</label>
+<label><input type="radio" name="vote" value="none"> 안 만나는 거</label>
+<button>투표하기</button>
+</form>
+<p id="results" role="status"></p>
 </section>
 <p id="message" role="alert"></p>
 </main>
@@ -59,11 +68,30 @@ function encode(name) {
 }
 function nameFrom(code) {
   const match = /^JJ-[0-9a-f-]{36}\.([A-Za-z0-9+/]+={0,2})$/.exec(code);
-  if (!match || code.length > 180) throw new Error('invalid code');
+  if (!match || code.length > 220) throw new Error('invalid code');
   const name = new TextDecoder('utf-8', { fatal: true }).decode(Uint8Array.from(atob(match[1]), (char) => char.charCodeAt(0))).trim();
   if (!name || name.length > 30) throw new Error('invalid name');
   return name;
 }
+const votesKey = 'jeju-visitor-demo-votes';
+const options = { dec: '12월', jan: '1월', none: '안 만나는 거' };
+function showVotes() {
+  const votes = JSON.parse(storage.getItem(votesKey) || '{}');
+  const code = storage.getItem(profileKey);
+  for (const radio of get('poll').elements.vote) {
+    radio.checked = radio.value === votes[code];
+  }
+  get('results').textContent = Object.entries(options).map(([value, label]) =>
+    label + ' ' + Object.values(votes).filter((vote) => vote === value).length + '표'
+  ).join(' · ');
+}
+get('poll').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const votes = JSON.parse(storage.getItem(votesKey) || '{}');
+  votes[storage.getItem(profileKey)] = new FormData(event.currentTarget).get('vote');
+  storage.setItem(votesKey, JSON.stringify(votes));
+  showVotes();
+});
 function visit(code) {
   if (!storage) return;
   const name = nameFrom(code);
@@ -77,6 +105,7 @@ function visit(code) {
   get('greeting').textContent = name + '님, 반가워요!';
   get('count').textContent = '이 브라우저에서 ' + count + '회 방문했어요.';
   get('personal').value = code;
+  showVotes();
 }
 get('register').addEventListener('submit', (event) => {
   event.preventDefault();
