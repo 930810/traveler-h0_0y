@@ -3,25 +3,757 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026 제주여행 | 여행 노트</title>
+  <title>2026 제주여행 일정</title>
   <style>
-    body { margin: 0; background: #f6f8f3; color: #20352c; font: 1rem/1.6 system-ui, sans-serif; }
-    main { max-width: 42rem; margin: auto; padding: clamp(1.5rem, 8vw, 5rem) 1.25rem; }
-    a { color: #285c46; text-underline-offset: .2em; }
-    h1 { font-size: clamp(2rem, 7vw, 3.5rem); margin: 1.5rem 0; }
-    section { background: white; border: 1px solid #dae4d9; border-radius: 1rem; padding: 1.25rem 1.5rem; }
-    h2 { margin: 0 0 .4rem; font-size: 1.25rem; }
-    p { margin: 0; color: #506358; }
+    :root {
+      --ink: #17202a;
+      --muted: #5f6b77;
+      --link: #174a68;
+      --link-hover: #0f3f59;
+      --danger: #9f1d16;
+      --line: #d8dee6;
+      --paper: #fbfcfd;
+      --card: #ffffff;
+      --kyoto: #7b4f30;
+      --osaka: #245b7a;
+      --accent: #b6463a;
+      --soft: #f2f5f7;
+      --note: #fff8e6;
+      --note-ink: #5a4515;
+      --fs-page: 15px;
+      --fs-small: 13px;
+      --fs-table: 14px;
+      --fs-chip: 14px;
+      --fs-card-title: 15px;
+      --fs-section: 20px;
+      --fs-subsection: 17px;
+      --fs-title: 28px;
+      --fw-regular: 400;
+      --fw-medium: 550;
+      --fw-semibold: 650;
+      --fw-bold: 700;
+      --btn-bg: #f4f8fb;
+      --btn-bg-hover: #eef6fb;
+      --btn-line: #9fb7c7;
+      --btn-line-hover: #6f9ab3;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      font-size: var(--fs-page);
+      font-weight: var(--fw-regular);
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 168px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .content {
+      min-width: 0;
+      grid-column: 1;
+    }
+
+    .toc {
+      grid-column: 2;
+      grid-row: 1;
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+    }
+
+    header {
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: var(--fs-title);
+      font-weight: var(--fw-bold);
+      line-height: 1.28;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: var(--fs-section);
+      font-weight: var(--fw-bold);
+      line-height: 1.34;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 28px 0 12px;
+      font-size: var(--fs-subsection);
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p { margin: 8px 0; }
+
+    .ops {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ops-card {
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 98px;
+    }
+
+    .ops-card.small {
+      grid-column: span 3;
+    }
+
+    .ops-card.wide {
+      grid-column: span 3;
+    }
+
+    .ops-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .ops-section + .ops-section {
+      margin-top: 14px;
+      padding-top: 13px;
+      border-top: 1px solid #edf1f5;
+    }
+
+    .ops-section h3 {
+      margin: 0 0 8px;
+      font-size: var(--fs-card-title);
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    .ops-section p {
+      margin: 4px 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: var(--fw-regular);
+      line-height: 1.5;
+    }
+
+    .ops-section ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .ops-section li {
+      margin: 3px 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: var(--fw-regular);
+      line-height: 1.5;
+    }
+
+    .ops-section li::marker {
+      color: var(--ink);
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .check-grid .ops-section + .ops-section {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+      border-left: 1px solid #edf1f5;
+      padding-left: 14px;
+    }
+
+    .critical {
+      color: var(--danger);
+      font-weight: var(--fw-semibold);
+      letter-spacing: 0;
+      text-rendering: geometricPrecision;
+    }
+
+    .subline {
+      display: block;
+      margin-top: 3px;
+      color: var(--ink);
+      font-weight: var(--fw-regular);
+      line-height: 1.45;
+    }
+
+    .day {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 16px 0;
+      overflow: hidden;
+      scroll-margin-top: 18px;
+    }
+
+    .day-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafb;
+    }
+
+    .day.kyoto .day-head { border-left: 6px solid var(--kyoto); }
+    .day.osaka .day-head { border-left: 6px solid var(--osaka); }
+    .day.travel .day-head { border-left: 6px solid var(--accent); }
+
+    .day-body { padding: 20px 22px 22px; }
+
+    .places {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      margin: 10px 0 18px;
+      list-style: none;
+    }
+
+    .places li {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      font-size: var(--fs-chip);
+      white-space: nowrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      background: #fff;
+      font-size: var(--fs-table);
+      line-height: 1.42;
+      letter-spacing: 0;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 9px 10px;
+      vertical-align: middle;
+      text-align: left;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: var(--fw-bold);
+      white-space: nowrap;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    td.time, th.time {
+      width: 126px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th.place, td.place { width: 175px; }
+    th.hours, td.hours { width: 160px; }
+    th.fee, td.fee { width: 128px; }
+    td.must, td.warn { min-width: 160px; }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px solid #ead9a8;
+      border-radius: 8px;
+      background: var(--note);
+      color: var(--note-ink);
+    }
+
+    .map {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 4px 0 18px;
+      background: #eef3f6;
+      overflow: hidden;
+    }
+
+    .map svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .map-open {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 11px;
+      border: 1px solid var(--btn-line-hover);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--link);
+      font-size: 13px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+      text-decoration: none;
+      box-shadow: 0 1px 4px rgba(23, 32, 42, 0.14);
+    }
+
+    .map .route-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .map .pin {
+      fill: #fff;
+      stroke: var(--accent);
+      stroke-width: 3;
+    }
+
+    .map .pin-number {
+      fill: var(--accent);
+      font-size: 12px;
+      font-weight: var(--fw-bold);
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .map .pin-label {
+      fill: var(--ink);
+      font-size: 12px;
+      font-weight: var(--fw-bold);
+      paint-order: stroke;
+      stroke: #fff;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+    }
+
+    .map .map-bg {
+      fill: #eef3f6;
+    }
+
+    .map .map-grid {
+      stroke: #d7e0e6;
+      stroke-width: 1;
+    }
+
+    .map-caption {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: var(--fs-small);
+    }
+
+    .route-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .day-head .route-links {
+      margin: 12px 0 0;
+    }
+
+    .route-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      max-width: 100%;
+      padding: 7px 11px;
+      border: 1px solid var(--btn-line);
+      border-radius: 8px;
+      background: var(--btn-bg);
+      color: var(--link);
+      font-size: var(--fs-chip);
+      font-weight: var(--fw-semibold);
+      line-height: 1.35;
+      text-decoration: none;
+      white-space: normal;
+    }
+
+    .source-map {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      margin-top: 16px;
+      padding: 8px 13px;
+      border: 1px solid var(--btn-line);
+      border-radius: 8px;
+      background: var(--btn-bg);
+      color: var(--link);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+    }
+
+    .jump-box {
+      margin: 0;
+      padding: 14px;
+      border: 1px solid #dfe6ee;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(23, 32, 42, 0.04);
+    }
+
+    .jump-box h2 {
+      margin: 0 0 12px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #edf1f5;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+    }
+
+    .jump-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 0;
+    }
+
+    .jump-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--btn-line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--link);
+      font-size: var(--fs-chip);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .jump-links a:hover {
+      border-color: var(--btn-line-hover);
+      background: var(--btn-bg-hover);
+      color: var(--link-hover);
+    }
+
+    .pin-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pin-list a {
+      display: block;
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--link);
+      text-decoration: none;
+      font-size: var(--fs-chip);
+    }
+
+    .route-links a:hover {
+      background: var(--btn-bg-hover);
+      border-color: var(--btn-line-hover);
+    }
+
+    .appendix {
+      margin-top: 28px;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      scroll-margin-top: 18px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: var(--fs-small);
+    }
+
+    .excluded {
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: #f7eeee;
+      border: 1px solid #e6caca;
+      margin: 14px 0 18px;
+      font-size: var(--fs-small);
+      line-height: 1.45;
+    }
+
+    .excluded p {
+      margin: 0;
+    }
+
+    a { color: var(--link); }
+
+    @media (max-width: 760px) {
+      :root {
+        --fs-title: 24px;
+        --fs-section: 18px;
+        --fs-subsection: 16px;
+        --fs-page: 14px;
+      }
+
+      main { width: min(100% - 20px, 1120px); padding-top: 10px; }
+      .page-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .toc {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 30;
+      }
+      .jump-box {
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .jump-box h2 {
+        margin-bottom: 8px;
+        padding-bottom: 7px;
+        font-size: 15px;
+      }
+      .jump-links {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: thin;
+      }
+      .jump-links a {
+        width: auto;
+        min-width: 52px;
+        flex: 0 0 auto;
+      }
+      .day, .appendix {
+        scroll-margin-top: 96px;
+      }
+      header, .appendix { padding: 18px; }
+      .ops { grid-template-columns: 1fr; }
+      .ops-card,
+      .ops-card.small,
+      .ops-card.wide,
+      .ops-card.full {
+        grid-column: auto;
+      }
+      .check-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .check-grid .ops-section + .ops-section {
+        border-left: 0;
+        border-top: 1px solid #edf1f5;
+        padding-left: 0;
+        padding-top: 12px;
+      }
+      .pin-list { grid-template-columns: 1fr; }
+      .day-body, .day-head { padding-left: 16px; padding-right: 16px; }
+      .places li { white-space: normal; }
+      .map { height: 340px; min-height: 300px; }
+      .route-links {
+        gap: 6px;
+      }
+      .route-links a {
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 13px;
+      }
+
+      table {
+        display: block;
+        border: 0;
+        background: transparent;
+        overflow: visible;
+        font-size: var(--fs-table);
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+      }
+
+      tr {
+        display: block;
+        margin: 0 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      th, td {
+        width: auto !important;
+        min-width: 0 !important;
+      }
+
+      td {
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 9px 10px;
+        text-align: left !important;
+        white-space: normal !important;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: var(--fw-bold);
+        line-height: 1.35;
+      }
+
+      td > * {
+        grid-column: 2;
+        min-width: 0;
+      }
+
+      td .critical,
+      td .subline {
+        display: block;
+        text-align: left;
+      }
+
+      table:has(th.time) td:nth-child(1)::before { content: "시간"; }
+      table:has(th.time) td:nth-child(2)::before { content: "장소"; }
+      table:has(th.time) td:nth-child(3)::before { content: "핵심"; }
+      table:has(th.time) td:nth-child(4)::before { content: "주의"; }
+      table:has(th.time) td:nth-child(5)::before { content: "운영"; }
+      table:has(th.time) td:nth-child(6)::before { content: "요금"; }
+
+      td.time {
+        font-weight: var(--fw-semibold);
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      main { width: 100%; padding: 0; }
+      header, .day, .appendix { break-inside: avoid; border-color: #aaa; }
+      a { color: inherit; text-decoration: none; }
+      .map { height: 340px; min-height: 300px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <nav aria-label="여행 노트"><a href="./">← 여행 목록</a></nav>
-    <h1>2026 제주여행</h1>
-    <section aria-labelledby="itinerary">
-      <h2 id="itinerary">여행 일정</h2>
-      <p>등록된 일정이 없어요.</p>
-    </section>
-  </main>
+<main>
+  <div class="page-grid">
+    <aside class="toc" aria-label="목차">
+      <div class="jump-box">
+        <h2>목차</h2>
+        <div class="jump-links">
+          <a href="#overview">여행 개요</a>
+          <a href="#itinerary">날짜별 일정</a>
+          <a href="#places">장소·지도</a>
+          <a href="#reference">영업·입장료</a>
+        </div>
+      </div>
+    </aside>
+    <div class="content">
+      <header id="overview">
+        <a class="source-map" href="https://930810.github.io/traveler-h0_0y/">← 여행 노트</a>
+        <h1>2026 제주여행 일정</h1>
+        <div class="ops">
+          <div class="ops-card small">
+            <div class="ops-section"><h3>여행 기간</h3><p>미정</p></div>
+            <div class="ops-section"><h3>항공 일정</h3><p>미정</p></div>
+          </div>
+          <div class="ops-card small">
+            <div class="ops-section"><h3>숙소</h3><p>미정</p></div>
+            <div class="ops-section"><h3>체크인·체크아웃</h3><p>미정</p></div>
+          </div>
+          <div class="ops-card full">
+            <div class="check-grid">
+              <div class="ops-section"><h3>예매·교통</h3><p>항공편과 제주 내 이동 수단</p></div>
+              <div class="ops-section"><h3>여행 준비</h3><p>신분증, 보조배터리, 방한용품</p></div>
+              <div class="ops-section"><h3>출발 전 확인</h3><p>제주 기상과 항공편 운항 상황</p></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="day travel" id="itinerary">
+        <div class="day-head"><h2>날짜별 일정</h2></div>
+        <div class="day-body">
+          <table>
+            <thead><tr><th class="time">시간</th><th class="place">장소</th><th>일정</th><th>참고</th></tr></thead>
+            <tbody><tr><td colspan="4">등록된 일정이 없어요.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="day travel" id="places">
+        <div class="day-head"><h2>장소·지도</h2></div>
+        <div class="day-body">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%A0%9C%EC%A3%BC%EB%8F%84" target="_blank" rel="noopener">제주도 지도 열기</a>
+        </div>
+      </section>
+      <section class="day travel" id="reference">
+        <div class="day-head"><h2>영업시간·입장료</h2></div>
+        <div class="day-body"><p>등록된 정보가 없어요.</p></div>
+      </section>
+    </div>
+  </div>
+</main>
 </body>
 </html>
